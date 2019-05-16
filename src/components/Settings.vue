@@ -34,7 +34,8 @@
 
             <v-flex xs6 v-if="edit==false">
               <v-flex xs12 v-for="(Contacts,index) in Contact" :key="Contacts.name">
-                <v-card-title primary-title>
+                <v-card class="mb-3">
+                  <v-card-title primary-title>
                   <div>
                     <h3 class="headline mb-0">{{Contacts.Contacts}}</h3>
                     <div>{{Contacts.Phone}}</div>
@@ -43,17 +44,15 @@
                     <div>{{Contacts.Age}}</div>
                   </div>
                 </v-card-title>
-
                 <v-card-actions v-if="edit==false">
                   <v-btn color="warning" @click="editContacts(Contact,index)">Edit</v-btn>
                   <v-btn color="error" @click="deleteContacts(index)">Delete</v-btn>
                 </v-card-actions>
-
                 <v-card-actions v-if="edit!==false">
-					<v-btn disabled color="warning">Edit</v-btn>
-					<v-btn disabled color="error">Delete</v-btn>
+                    <v-btn disabled color="warning">Edit</v-btn>
+                    <v-btn disabled color="error">Delete</v-btn>
                 </v-card-actions>
-
+                  </v-card>
               </v-flex>
             </v-flex>
           </v-layout>
@@ -96,8 +95,8 @@ export default {
     };
   },
   methods: {
-    saveContacts:function(t,d,event) {
-      event.preventDefault();
+    saveContacts:function(t,d,e) {
+      e.preventDefault();
       this.Contact.push({
         Contacts:this.Contacts,
         Phone:this.Phone,
@@ -124,8 +123,8 @@ export default {
       this.Age=t.Age;
       this.ing=i;
     },
-    updateContacts:function(event) {
-      event.preventDefault();
+    updateContacts:function(e) {
+      e.preventDefault();
       this.edit=!this.edit;
       let Contactsdb={
         Contacts:this.Contact,
@@ -146,8 +145,8 @@ export default {
       this.Mail = '';
       this.Age = '';
     },
-    cancelContact:function(event) {
-      event.preventDefault();
+    cancelContact:function(e) {
+      e.preventDefault();
       this.Contacts = '';
       this.Phone = '';
       this.Site = '';
@@ -173,11 +172,5 @@ export default {
 </script>
 
 <style scoped>
-.form {
-  padding: 1rem;
-}
 
-body {
-  text-align: center;
-}
 </style>
