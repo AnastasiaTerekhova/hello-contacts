@@ -1,18 +1,16 @@
 <template>
   <div id="app">
-    <!-- <Contacts msg=" "/> -->
-    <Settings />
+    <Contacts />
   </div>
 </template>
 
 <script>
-// import Contacts from './components/Contacts.vue'
-import Settings from './components/Settings.vue'
+import Contacts from './components/Contacts.vue'
 
 export default {
   name: 'app',
   components: {
-    Settings
+    Contacts
   }
 }
 </script>
