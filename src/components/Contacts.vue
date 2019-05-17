@@ -101,10 +101,10 @@
       ></v-text-field>
       <v-spacer></v-spacer>
     </v-toolbar>
-    <v-expansion-panel popout>
+    <v-expansion-panel popout >
       <v-expansion-panel-content v-for="i in users" :key="i.email">
         <template v-slot:header>
-          <v-avatar
+          <v-avatar class="text-xs-left"
                   size="40px"
                 >
                   <img
@@ -120,6 +120,29 @@
           <v-card-text><v-icon>event</v-icon> Дата рождения: {{i.hireDate}}</v-card-text>
           <v-card-text><v-icon>mail</v-icon> Email: {{i.email}}</v-card-text>
           <v-card-text><v-icon>language</v-icon> Сайт: {{i.site}}</v-card-text>
+
+          <div class="text-xs-center">
+            <v-tooltip top>
+        <template v-slot:activator="{ on }" >
+          <v-btn flat icon color="blue lighten-2" v-on="on" @click="edit"> <v-icon>edit</v-icon> </v-btn>
+        </template>
+        <span>Изменить </span>
+      </v-tooltip>
+
+            <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <v-btn flat icon color="red lighten-2" v-on="on" @click="delet(i)"><v-icon>delete</v-icon></v-btn>
+        </template>
+        <span>Удалить</span>
+      </v-tooltip>
+        <!-- <v-btn flat icon color="blue lighten-2" :href="source">
+          <v-icon>thumb_up</v-icon>
+        </v-btn>
+  
+        <v-btn flat icon color="red lighten-2">
+          <v-icon>thumb_down</v-icon>
+        </v-btn> -->
+      </div>
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -231,11 +254,11 @@
           <v-spacer></v-spacer>
           <v-btn
             flat
-            color="primary"
             @click="dialog = false"
           >Отмена</v-btn>
           <v-btn
             flat
+            color="primary"
             @click="save"
           >Сохранить</v-btn>
         </v-card-actions>
@@ -260,8 +283,6 @@ export default {
     hireDate: "",
     items: [
       { icon: "contacts", text: "Сортировать по дате рождения" },
-      { icon: "history", text: "Frequently contacted" },
-      { icon: "content_copy", text: "Duplicates" }
     ],
     hireDates: []
   }),
@@ -282,6 +303,10 @@ export default {
       this.site = '';
       this.dialog = false;
     },
+    delet:function(i){
+      this.users.splice(i,1);
+    },
+   
   },
 };
 </script>
